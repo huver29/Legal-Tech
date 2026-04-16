@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IurisLex: Mentor Constitucional</title>
+    <style>
+      :root {
+        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        color: #f5f9ff;
+        background: #020611;
+      }
+
+      * { box-sizing: border-box; }
+      body { margin: 0; min-height: 100vh; background: radial-gradient(circle at top left, rgba(78, 185, 255, .18), transparent 20%), radial-gradient(circle at 90% 20%, rgba(69, 255, 229, .1), transparent 24%), #020611; }
+      a, button, input { font: inherit; }
+      button { cursor: pointer; }
+
+      .page { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
+      .frame { width: min(1360px, 100%); background: rgba(7, 14, 28, .92); border: 1px solid rgba(90, 155, 255, .13); border-radius: 32px; box-shadow: 0 40px 100px rgba(0, 0, 0, .35); overflow: hidden; backdrop-filter: blur(18px); }
+
+      .header { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; padding: 34px 38px 18px; background: linear-gradient(180deg, rgba(7, 14, 28, .95), rgba(10, 17, 37, .95)); }
+      .brand { display: grid; gap: 6px; }
+      .brand-top { display: flex; gap: 16px; align-items: center; }
+      .brand-logo { width: 52px; height: 52px; border-radius: 18px; background: radial-gradient(circle, #ffbb3b 0%, #f0b13a 40%, #e2a23c 100%); display: grid; place-items: center; color: #102340; font-weight: 800; font-size: 1.3rem; }
+      .brand-name { color: #fdf5e6; font-size: 1.2rem; font-weight: 700; letter-spacing: .12em; }
+      .brand-sub { color: rgba(245, 249, 255, .75); text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; }
+      .brand-title { font-size: 1.95rem; line-height: 1.02; letter-spacing: -.03em; color: #f7fbff; }
+      .brand-tag { margin-top: 8px; color: rgba(245, 249, 255, .78); font-size: .95rem; }
+
+      .connection { display: flex; align-items: center; justify-content: flex-end; gap: 12px; color: #bcd9ff; font-size: .9rem; text-transform: uppercase; letter-spacing: .18em; }
+      .connection span { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; background: rgba(43, 90, 179, .16); border: 1px solid rgba(84, 148, 255, .18); }
+
+      .content { display: grid; gap: 28px; padding: 0 38px 34px; }
+      .search-box { display: grid; grid-template-columns: 1fr auto; gap: 14px; background: rgba(15, 24, 45, .95); border: 1px solid rgba(110, 160, 255, .18); border-radius: 24px; padding: 18px; }
+      .search-box input { width: 100%; border: none; background: transparent; color: #f5f9ff; font-size: 1.05rem; outline: none; }
+      .search-box input::placeholder { color: rgba(246, 250, 255, .5); }
+      .search-button { min-width: 136px; border: none; border-radius: 18px; background: linear-gradient(135deg, #5bc7ff, #2071ff); color: #07131f; font-weight: 700; letter-spacing: .06em; padding: 16px 20px; }
+
+      .tabs { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 18px; }
+      .tab { padding: 12px 20px; border-radius: 999px; border: 1px solid rgba(255,255,255,.08); color: #c5e2ff; background: rgba(255,255,255,.04); transition: transform .2s ease, background .2s ease; }
+      .tab.active { background: rgba(57, 133, 255, .22); color: #f8fdff; border-color: rgba(88, 163, 255, .22); }
+      .tab:hover { transform: translateY(-1px); }
+
+      .tab-panels { display: grid; gap: 24px; }
+      .panel-box { display: none; gap: 20px; }
+      .panel-box.active { display: grid; }
+      .panel-intro { display: grid; gap: 12px; }
+      .panel-intro h2 { margin: 0; color: #eef9ff; font-size: 1.22rem; }
+      .panel-intro p { margin: 0; color: rgba(231, 241, 255, .78); line-height: 1.7; }
+
+      .info-block { display: grid; gap: 10px; padding: 22px; border-radius: 24px; background: rgba(8, 15, 31, .95); border: 1px solid rgba(100, 168, 255, .12); }
+      .info-block h3 { margin: 0; color: #f3f8ff; }
+      .info-block p { margin: 0; color: rgba(210, 228, 255, .78); line-height: 1.7; }
+
+      .result-grid { display: grid; gap: 18px; }
+      .chip-list { display: flex; flex-wrap: wrap; gap: 10px; }
+      .chip { padding: 10px 16px; border-radius: 999px; border: 1px solid rgba(112, 181, 255, .18); background: rgba(29, 60, 122, .28); color: #d8efff; font-size: .88rem; }
+
+      .action-card { display: grid; gap: 16px; padding: 24px; border-radius: 28px; background: rgba(10, 18, 34, .95); border: 1px solid rgba(95, 170, 255, .12); }
+      .action-header { display: flex; align-items: center; gap: 14px; }
+      .action-icon { width: 46px; height: 46px; border-radius: 16px; background: rgba(44, 106, 255, .16); display: grid; place-items: center; color: #94d9ff; }
+      .action-header strong { font-size: 1rem; color: #f3f8ff; }
+      .action-text { color: rgba(226, 240, 255, .78); line-height: 1.7; }
+      .action-button { border: none; border-radius: 18px; background: linear-gradient(135deg, #62c6ff, #1f6fff); color: #05111c; padding: 14px 18px; font-weight: 700; letter-spacing: .05em; }
+
+      .footer { display: grid; gap: 16px; padding: 28px 0 16px; }
+      .footer-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+      .footer-card { display: inline-flex; align-items: center; justify-content: space-between; gap: 12px; min-width: 240px; padding: 16px 20px; border-radius: 20px; background: rgba(15, 26, 48, .94); border: 1px solid rgba(94, 160, 255, .12); color: #d8eeff; }
+      .footer-card strong { color: #f7fbff; font-size: 1rem; }
+      .footer-mini { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; color: rgba(211, 226, 255, .7); font-size: .84rem; }
+      .footer-mini span { padding: 8px 14px; border-radius: 999px; background: rgba(62, 100, 170, .16); border: 1px solid rgba(112, 177, 255, .1); }
+
+      @media (max-width: 1080px) {
+        .actions { grid-template-columns: 1fr; }
+        .footer-row { flex-direction: column; align-items: stretch; }
+      }
+
+      @media (max-width: 780px) {
+        .header, .content { padding-left: 24px; padding-right: 24px; }
+        .search-box { grid-template-columns: 1fr; }
+      }
+
+      @media (max-width: 620px) {
+        .frame { border-radius: 20px; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <article class="frame">
+        <header class="header">
+          <div class="brand">
+            <div class="brand-top">
+              <div class="brand-logo">⚖</div>
+              <div>
+                <div class="brand-name">IURISLEX: MENTOR CONSTITUCIONAL</div>
+                <div class="brand-sub">CONSULTA Y ANÁLISIS JURÍDICO PROFESIONAL</div>
+              </div>
+            </div>
+            <div class="brand-title">Consulta la Constitución con análisis real y simulador de casos.</div>
+            <div class="brand-tag">CPSC 1991 / Artículos, comparación y práctica.</div>
+          </div>
+          <div class="connection"><span>Conexión local: Ollama</span></div>
+        </header>
+
+        <section class="content">
+          <div class="search-box">
+            <input id="query-input" type="text" placeholder="Consulta un artículo o pregunta: ej. 'Artículo 13', 'Derecho al Trabajo', '¿Qué dice la Constitución sobre igualdad?'" />
+            <button id="search-button" class="search-button">Preguntar</button>
+          </div>
+
+          <div class="tabs" role="tablist">
+            <button class="tab active" data-panel="consulta">Consulta</button>
+            <button class="tab" data-panel="comparacion">Comparación</button>
+            <button class="tab" data-panel="simulacion">Simulación</button>
+            <button class="tab" data-panel="analisis">Análisis</button>
+          </div>
+
+          <div class="tab-panels">
+            <section id="consulta" class="panel-box active">
+              <div class="panel-intro">
+                <h2>Consulta constitucional</h2>
+                <p>Introduce una pregunta o un artículo. El asistente responde con el texto constitucional exacto y su contexto jurídico.</p>
+              </div>
+              <div class="result-grid">
+                <div class="info-block">
+                  <h3>Artículo consultado</h3>
+                  <p id="article-meta">Utiliza el cuadro de búsqueda para iniciar la consulta.</p>
+                </div>
+                <div class="info-block">
+                  <h3>Texto constitucional</h3>
+                  <p id="article-paragraph">El texto del artículo aparecerá aquí después de consultar.</p>
+                </div>
+                <div class="info-block">
+                  <h3>Respuesta del asistente</h3>
+                  <p id="llm-response">La explicación generada por Ollama aparecerá aquí.</p>
+                </div>
+                <div class="chip-list" id="related-chips"></div>
+              </div>
+            </section>
+
+            <section id="comparacion" class="panel-box">
+              <div class="panel-intro">
+                <h2>Mapa de relaciones constitucionales</h2>
+                <p>Compara el artículo con otros preceptos afines y descubre su conexión dentro de la Carta Magna.</p>
+              </div>
+              <div class="info-block">
+                <h3>Comparación legal</h3>
+                <p id="comparison-text">Después de consultar, la comparación aparecerá aquí.</p>
+              </div>
+              <div class="chip-list" id="comparison-list"></div>
+            </section>
+
+            <section id="simulacion" class="panel-box">
+              <div class="panel-intro">
+                <h2>Simulador de casos prácticos</h2>
+                <p>Genera un escenario realista basado en el artículo consultado y su interpretación constitucional.</p>
+              </div>
+              <div class="info-block">
+                <h3>Escenario sugerido</h3>
+                <p id="case-scenario">Realiza una consulta primero para activar el simulador.</p>
+              </div>
+              <div class="info-block">
+                <h3>Guía del caso</h3>
+                <p id="case-prompt">El simulador propondrá un instructivo de análisis en cuanto se consulte un artículo.</p>
+              </div>
+            </section>
+
+            <section id="analisis" class="panel-box">
+              <div class="panel-intro">
+                <h2>Análisis de la consulta</h2>
+                <p>Obtén explicaciones claras, técnica jurídica y preguntas para profundizar el estudio de cada artículo.</p>
+              </div>
+              <div class="info-block">
+                <h3>Enfoque jurídico simple</h3>
+                <p id="analysis-simple">Aquí aparecerá el resumen en lenguaje accesible.</p>
+              </div>
+              <div class="info-block">
+                <h3>Enfoque jurídico técnico</h3>
+                <p id="analysis-technical">Aquí aparecerá el análisis detallado del artículo en su contexto constitucional.</p>
+              </div>
+              <div class="info-block">
+                <h3>Pregunta de reflexión</h3>
+                <p id="analysis-reflection">Aquí aparecerá una pregunta de reflexión para profundizar la interpretación jurídica.</p>
+              </div>
+            </section>
+          </div>
+
+          <div class="actions">
+            <div class="action-card">
+              <div class="action-header">
+                <div class="action-icon">🗺️</div>
+                <strong>Mapa de relaciones</strong>
+              </div>
+              <p class="action-text">Observa cómo el artículo se conecta con otros preceptos constitucionales relevantes.</p>
+              <button class="action-button" data-panel="comparacion">Abrir mapa</button>
+            </div>
+            <div class="action-card">
+              <div class="action-header">
+                <div class="action-icon">⚖️</div>
+                <strong>Simulador de casos</strong>
+              </div>
+              <p class="action-text">Lleva el análisis a un caso práctico y aplica los conceptos en una situación realista.</p>
+              <button class="action-button" data-panel="simulacion">Lanzar simulador</button>
+            </div>
+          </div>
+
+          <div class="footer">
+            <div class="footer-row">
+              <div class="footer-card">
+                <strong>Tiempo de respuesta</strong>
+                <span id="response-time">En espera</span>
+              </div>
+              <div class="footer-card">
+                <strong>Proveedor IA</strong>
+                <span id="provider-status">Ollama (local)</span>
+              </div>
+            </div>
+            <div class="footer-mini">
+              <span id="model-status">Modelo: GPT-4o</span>
+              <span>Interfaz profesional</span>
+            </div>
+          </div>
+        </section>
+      </article>
+    </div>
+
+    <script>
+      const tabs = document.querySelectorAll('.tab');
+      const panels = document.querySelectorAll('.panel-box');
+      const searchButton = document.querySelector('#search-button');
+      const queryInput = document.querySelector('#query-input');
+      const articleMeta = document.querySelector('#article-meta');
+      const articleParagraph = document.querySelector('#article-paragraph');
+      const relatedChips = document.querySelector('#related-chips');
+      const comparisonText = document.querySelector('#comparison-text');
+      const comparisonList = document.querySelector('#comparison-list');
+      const caseScenario = document.querySelector('#case-scenario');
+      const casePrompt = document.querySelector('#case-prompt');
+      const analysisSimple = document.querySelector('#analysis-simple');
+      const analysisTechnical = document.querySelector('#analysis-technical');
+      const analysisReflection = document.querySelector('#analysis-reflection');
+      const llmResponse = document.querySelector('#llm-response');
+      const responseTime = document.querySelector('#response-time');
+      const providerStatus = document.querySelector('#provider-status');
+      const modelStatus = document.querySelector('#model-status');
+      const actionButtons = document.querySelectorAll('.action-button');
+
+      function setActiveTab(panelId) {
+        tabs.forEach(tab => {
+          const active = tab.dataset.panel === panelId;
+          tab.classList.toggle('active', active);
+        });
+        panels.forEach(panel => panel.classList.toggle('active', panel.id === panelId));
+      }
+
+      function renderResponse(data) {
+        const article = data.article;
+        articleMeta.textContent = `${article.articulo} • ${article.titulo_nombre} / ${article.capitulo_nombre}`;
+        articleParagraph.textContent = article.texto;
+
+        relatedChips.innerHTML = data.related.length
+          ? data.related.map(item => `<span class="chip">${item.articulo} — ${item.capitulo_nombre}</span>`).join('')
+          : '<span class="chip">No hay relaciones directas disponibles.</span>';
+
+        comparisonText.textContent = data.analysis.comparative;
+        comparisonList.innerHTML = data.related.length
+          ? data.related.map(item => `<span class="chip">${item.articulo}</span>`).join('')
+          : '<span class="chip">Sin comparaciones adicionales</span>';
+
+        caseScenario.textContent = data.case_simulation.scenario;
+        casePrompt.textContent = data.case_simulation.prompt;
+
+        analysisSimple.textContent = data.analysis.simple;
+        analysisTechnical.textContent = data.analysis.technical;
+        analysisReflection.textContent = data.analysis.reflection;
+        llmResponse.textContent = data.llm_response || 'No hay respuesta del asistente disponible.';
+
+        responseTime.textContent = `${data.response_time_ms} ms`;
+        providerStatus.textContent = data.provider;
+        modelStatus.textContent = `Modelo: ${data.model}`;
+      }
+
+      async function submitQuery() {
+        const query = queryInput.value.trim();
+        if (!query) {
+          articleMeta.textContent = 'Ingrese una consulta válida para comenzar.';
+          return;
+        }
+
+        articleMeta.textContent = 'Consultando…';
+        articleParagraph.textContent = 'Espere mientras se procesa su solicitud.';
+
+        try {
+          const result = await fetch('/api/consulta', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ query }),
+          });
+
+          if (!result.ok) {
+            const error = await result.json();
+            articleMeta.textContent = error.detail || 'No se encontró información para esa consulta.';
+            articleParagraph.textContent = '';
+            return;
+          }
+
+          const data = await result.json();
+          renderResponse(data);
+          setActiveTab('consulta');
+        } catch (error) {
+          articleMeta.textContent = 'Error de conexión. Intenta nuevamente.';
+          articleParagraph.textContent = '';
+        }
+      }
+
+      tabs.forEach(tab => tab.addEventListener('click', () => setActiveTab(tab.dataset.panel)));
+      actionButtons.forEach(button => button.addEventListener('click', () => setActiveTab(button.dataset.panel)));
+      searchButton.addEventListener('click', submitQuery);
+      queryInput.addEventListener('keydown', event => {
+        if (event.key === 'Enter') {
+          submitQuery();
+        }
+      });
+    </script>
+  </body>
+</html>
