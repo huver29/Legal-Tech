@@ -1,0 +1,270 @@
+{
+  "stats": {
+    "total_queries": 25,
+    "successful": 25,
+    "response_times": {
+      "p50": 2041,
+      "p75": 2059,
+      "p95": 2077,
+      "p99": 6243,
+      "min": 2015,
+      "max": 6834,
+      "mean": 2403.6,
+      "stdev": 1247.5
+    },
+    "benchmark_duration_seconds": 60.1,
+    "timestamp": "2026-04-17T09:33:52.270440"
+  },
+  "results": [
+    {
+      "query": "\u00bfCu\u00e1les son los derechos fundamentales?",
+      "status": "success",
+      "response_time_ms": 2031,
+      "api_response_time_ms": 0,
+      "article_found": "5",
+      "confidence": 0.5,
+      "error": null,
+      "category": "b\u00fasqueda_simple"
+    },
+    {
+      "query": "\u00bfQu\u00e9 es la soberan\u00eda nacional?",
+      "status": "success",
+      "response_time_ms": 2038,
+      "api_response_time_ms": 1,
+      "article_found": "9",
+      "confidence": 0.5,
+      "error": null,
+      "category": "b\u00fasqueda_simple"
+    },
+    {
+      "query": "\u00bfQu\u00e9 dice sobre la igualdad?",
+      "status": "success",
+      "response_time_ms": 2034,
+      "api_response_time_ms": 0,
+      "article_found": "204",
+      "confidence": 0.5,
+      "error": null,
+      "category": "b\u00fasqueda_simple"
+    },
+    {
+      "query": "Habeas corpus",
+      "status": "success",
+      "response_time_ms": 2075,
+      "api_response_time_ms": 1,
+      "article_found": "157",
+      "confidence": 0.5,
+      "error": null,
+      "category": "b\u00fasqueda_simple"
+    },
+    {
+      "query": "Libertad de expresi\u00f3n",
+      "status": "success",
+      "response_time_ms": 2015,
+      "api_response_time_ms": 0,
+      "article_found": "20",
+      "confidence": 0.5,
+      "error": null,
+      "category": "b\u00fasqueda_simple"
+    },
+    {
+      "query": "\u00bfCu\u00e1les son los derechos fundamentales y c\u00f3mo se protegen constitucionalmente?",
+      "status": "success",
+      "response_time_ms": 2035,
+      "api_response_time_ms": 0,
+      "article_found": "94",
+      "confidence": 0.5,
+      "error": null,
+      "category": "b\u00fasqueda_compleja"
+    },
+    {
+      "query": "\u00bfQu\u00e9 procedimientos existen para proteger los derechos cuando est\u00e1n siendo vulnerados?",
+      "status": "success",
+      "response_time_ms": 2077,
+      "api_response_time_ms": 0,
+      "article_found": "57",
+      "confidence": 0.5,
+      "error": null,
+      "category": "b\u00fasqueda_compleja"
+    },
+    {
+      "query": "Explica la estructura y funciones de las tres ramas del poder p\u00fablico",
+      "status": "success",
+      "response_time_ms": 2059,
+      "api_response_time_ms": 0,
+      "article_found": "279",
+      "confidence": 0.5,
+      "error": null,
+      "category": "b\u00fasqueda_compleja"
+    },
+    {
+      "query": "\u00bfCu\u00e1l es el rol del Congreso en la aprobaci\u00f3n de leyes y tratados internacionales?",
+      "status": "success",
+      "response_time_ms": 2061,
+      "api_response_time_ms": 0,
+      "article_found": "101",
+      "confidence": 0.5,
+      "error": null,
+      "category": "b\u00fasqueda_compleja"
+    },
+    {
+      "query": "\u00bfQu\u00e9 mecanismos constitucionales existen para proteger los derechos de las minor\u00edas?",
+      "status": "success",
+      "response_time_ms": 2040,
+      "api_response_time_ms": 1,
+      "article_found": "38",
+      "confidence": 0.5,
+      "error": null,
+      "category": "b\u00fasqueda_compleja"
+    },
+    {
+      "query": "\u00bfQu\u00e9 es la soveran\u00eda naciional?",
+      "status": "success",
+      "response_time_ms": 2051,
+      "api_response_time_ms": 1,
+      "article_found": "9",
+      "confidence": 0.5,
+      "error": null,
+      "category": "b\u00fasqueda_con_typos"
+    },
+    {
+      "query": "habeas corpis",
+      "status": "success",
+      "response_time_ms": 2040,
+      "api_response_time_ms": 1,
+      "article_found": "169",
+      "confidence": 0.5,
+      "error": null,
+      "category": "b\u00fasqueda_con_typos"
+    },
+    {
+      "query": "libertad de expresion",
+      "status": "success",
+      "response_time_ms": 2046,
+      "api_response_time_ms": 0,
+      "article_found": "20",
+      "confidence": 0.5,
+      "error": null,
+      "category": "b\u00fasqueda_con_typos"
+    },
+    {
+      "query": "derechos fundamntales",
+      "status": "success",
+      "response_time_ms": 2073,
+      "api_response_time_ms": 0,
+      "article_found": "44",
+      "confidence": 0.5,
+      "error": null,
+      "category": "b\u00fasqueda_con_typos"
+    },
+    {
+      "query": "consituci\u00f3n",
+      "status": "success",
+      "response_time_ms": 2041,
+      "api_response_time_ms": 0,
+      "article_found": "91",
+      "confidence": 0.5,
+      "error": null,
+      "category": "b\u00fasqueda_con_typos"
+    },
+    {
+      "query": "\u00bfQu\u00e9 art\u00edculos hablan sobre los derechos de los ciudadanos?",
+      "status": "success",
+      "response_time_ms": 2048,
+      "api_response_time_ms": 0,
+      "article_found": "258",
+      "confidence": 0.5,
+      "error": null,
+      "category": "b\u00fasqueda_multiple_art\u00edculos"
+    },
+    {
+      "query": "\u00bfQu\u00e9 diferencia hay entre la naci\u00f3n y el territorio nacional?",
+      "status": "success",
+      "response_time_ms": 2047,
+      "api_response_time_ms": 0,
+      "article_found": "364",
+      "confidence": 0.5,
+      "error": null,
+      "category": "b\u00fasqueda_multiple_art\u00edculos"
+    },
+    {
+      "query": "\u00bfCu\u00e1les son los principios que rigen la actividad estatal?",
+      "status": "success",
+      "response_time_ms": 2037,
+      "api_response_time_ms": 0,
+      "article_found": "230",
+      "confidence": 0.5,
+      "error": null,
+      "category": "b\u00fasqueda_multiple_art\u00edculos"
+    },
+    {
+      "query": "\u00bfQu\u00e9 dicen los art\u00edculos sobre la participaci\u00f3n pol\u00edtica?",
+      "status": "success",
+      "response_time_ms": 2023,
+      "api_response_time_ms": 1,
+      "article_found": "318",
+      "confidence": 0.5,
+      "error": null,
+      "category": "b\u00fasqueda_multiple_art\u00edculos"
+    },
+    {
+      "query": "\u00bfC\u00f3mo est\u00e1 organizada la rama ejecutiva?",
+      "status": "success",
+      "response_time_ms": 2033,
+      "api_response_time_ms": 0,
+      "article_found": "195",
+      "confidence": 0.5,
+      "error": null,
+      "category": "b\u00fasqueda_multiple_art\u00edculos"
+    },
+    {
+      "query": "Art\u00edculo 1",
+      "status": "success",
+      "response_time_ms": 2031,
+      "api_response_time_ms": 0,
+      "article_found": "1",
+      "confidence": 0.5,
+      "error": null,
+      "category": "b\u00fasqueda_espec\u00edfica"
+    },
+    {
+      "query": "Art\u00edculo 19",
+      "status": "success",
+      "response_time_ms": 6834,
+      "api_response_time_ms": 1,
+      "article_found": "19",
+      "confidence": 0.5,
+      "error": null,
+      "category": "b\u00fasqueda_espec\u00edfica"
+    },
+    {
+      "query": "Art\u00edculo 44",
+      "status": "success",
+      "response_time_ms": 2032,
+      "api_response_time_ms": 0,
+      "article_found": "44",
+      "confidence": 0.5,
+      "error": null,
+      "category": "b\u00fasqueda_espec\u00edfica"
+    },
+    {
+      "query": "Art\u00edculo 86",
+      "status": "success",
+      "response_time_ms": 6243,
+      "api_response_time_ms": 0,
+      "article_found": "86",
+      "confidence": 0.5,
+      "error": null,
+      "category": "b\u00fasqueda_espec\u00edfica"
+    },
+    {
+      "query": "Art\u00edculo 365",
+      "status": "success",
+      "response_time_ms": 2047,
+      "api_response_time_ms": 1,
+      "article_found": "365",
+      "confidence": 0.5,
+      "error": null,
+      "category": "b\u00fasqueda_espec\u00edfica"
+    }
+  ]
+}

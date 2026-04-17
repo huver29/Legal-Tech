@@ -52,7 +52,7 @@ def load_constitution() -> List[Dict[str, str]]:
     if not CSV_PATH.exists():
         return articles
 
-    with CSV_PATH.open('r', encoding='latin-1') as csv_file:
+    with CSV_PATH.open('r', encoding='utf-8') as csv_file:
         reader = csv.DictReader(csv_file)
         for row in reader:
             raw_article = row.get('articulo', '') or ''

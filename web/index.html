@@ -6,7 +6,7 @@
     <title>IurisLex: Mentor Constitucional</title>
     <style>
       :root {
-        font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
         color: #f5f9ff;
         background: #020611;
       }
@@ -19,70 +19,97 @@
       .page { min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px; }
       .frame { width: min(1360px, 100%); background: rgba(7, 14, 28, .92); border: 1px solid rgba(90, 155, 255, .13); border-radius: 32px; box-shadow: 0 40px 100px rgba(0, 0, 0, .35); overflow: hidden; backdrop-filter: blur(18px); }
 
-      .header { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; padding: 34px 38px 18px; background: linear-gradient(180deg, rgba(7, 14, 28, .95), rgba(10, 17, 37, .95)); }
-      .brand { display: grid; gap: 6px; }
-      .brand-top { display: flex; gap: 16px; align-items: center; }
-      .brand-logo { width: 52px; height: 52px; border-radius: 18px; background: radial-gradient(circle, #ffbb3b 0%, #f0b13a 40%, #e2a23c 100%); display: grid; place-items: center; color: #102340; font-weight: 800; font-size: 1.3rem; }
-      .brand-name { color: #fdf5e6; font-size: 1.2rem; font-weight: 700; letter-spacing: .12em; }
-      .brand-sub { color: rgba(245, 249, 255, .75); text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; }
-      .brand-title { font-size: 1.95rem; line-height: 1.02; letter-spacing: -.03em; color: #f7fbff; }
-      .brand-tag { margin-top: 8px; color: rgba(245, 249, 255, .78); font-size: .95rem; }
+      .header { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 28px; padding: 56px 38px 40px; background: linear-gradient(180deg, rgba(7, 14, 28, .95) 0%, rgba(10, 17, 37, .92) 100%); text-align: center; position: relative; overflow: hidden; }
+      .header::before { content: ''; position: absolute; top: -50%; left: 50%; width: 600px; height: 600px; background: radial-gradient(circle, rgba(91, 199, 255, .08) 0%, transparent 70%); transform: translateX(-50%); pointer-events: none; }
+      .brand { display: grid; gap: 14px; align-items: center; max-width: 800px; position: relative; z-index: 1; }
+      .brand-top { display: flex; gap: 18px; align-items: center; justify-content: center; }
+      .brand-logo { width: 72px; height: 72px; border-radius: 20px; background: linear-gradient(135deg, #ffbb3b 0%, #ffa500 50%, #ff8c00 100%); display: grid; place-items: center; color: #102340; font-weight: 800; font-size: 1.8rem; box-shadow: 0 12px 32px rgba(255, 171, 59, .25), inset 0 2px 8px rgba(255, 255, 255, .3); transition: transform .3s ease, box-shadow .3s ease; }
+      .brand-logo:hover { transform: scale(1.08) rotateY(5deg); box-shadow: 0 16px 40px rgba(255, 171, 59, .35), inset 0 2px 8px rgba(255, 255, 255, .4); }
+      .brand-name { color: #f5fbff; font-size: 1.65rem; font-weight: 750; letter-spacing: -.01em; line-height: 1.2; background: linear-gradient(135deg, #fdf5e6 0%, #5bc7ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+      .brand-sub { color: rgba(245, 249, 255, .75); text-transform: uppercase; letter-spacing: .16em; font-size: .7rem; }
+      .brand-title { font-size: 1.75rem; line-height: 1.35; letter-spacing: -.01em; color: #5bc7ff; font-weight: 650; text-shadow: 0 2px 12px rgba(91, 199, 255, .2); }
+      .brand-tag { margin-top: 8px; color: rgba(200, 230, 255, .9); font-size: 1.05rem; line-height: 1.5; font-weight: 500; letter-spacing: .02em; }
 
-      .connection { display: flex; align-items: center; justify-content: flex-end; gap: 12px; color: #bcd9ff; font-size: .9rem; text-transform: uppercase; letter-spacing: .18em; }
-      .connection span { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; background: rgba(43, 90, 179, .16); border: 1px solid rgba(84, 148, 255, .18); }
+      .connection { display: flex; align-items: center; justify-content: center; gap: 12px; color: #bcd9ff; font-size: .85rem; text-transform: uppercase; letter-spacing: .12em; }
+      .connection span { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: rgba(43, 90, 179, .12); border: 1px solid rgba(84, 148, 255, .15); }
 
       .content { display: grid; gap: 28px; padding: 0 38px 34px; }
       .search-box { display: grid; grid-template-columns: 1fr auto; gap: 14px; background: rgba(15, 24, 45, .95); border: 1px solid rgba(110, 160, 255, .18); border-radius: 24px; padding: 18px; }
       .search-box input { width: 100%; border: none; background: transparent; color: #f5f9ff; font-size: 1.05rem; outline: none; }
       .search-box input::placeholder { color: rgba(246, 250, 255, .5); }
-      .search-button { min-width: 136px; border: none; border-radius: 18px; background: linear-gradient(135deg, #5bc7ff, #2071ff); color: #07131f; font-weight: 700; letter-spacing: .06em; padding: 16px 20px; }
+      .search-button { min-width: 136px; border: none; border-radius: 18px; background: linear-gradient(135deg, #5bc7ff, #2071ff); color: #07131f; font-weight: 700; letter-spacing: .06em; padding: 16px 20px; transition: transform .15s ease; }
+      .search-button:hover { transform: translateY(-2px); }
+      .search-button:active { transform: translateY(0); }
 
-      .tabs { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 18px; }
-      .tab { padding: 12px 20px; border-radius: 999px; border: 1px solid rgba(255,255,255,.08); color: #c5e2ff; background: rgba(255,255,255,.04); transition: transform .2s ease, background .2s ease; }
-      .tab.active { background: rgba(57, 133, 255, .22); color: #f8fdff; border-color: rgba(88, 163, 255, .22); }
-      .tab:hover { transform: translateY(-1px); }
+      /* TABS SYSTEM V2 */
+      .tabs-container { display: grid; gap: 20px; }
+      .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; border-bottom: 1px solid rgba(90, 155, 255, .1); padding-bottom: 16px; }
+      .tab { padding: 12px 16px; border-radius: 12px 12px 0 0; border: 1px solid transparent; color: #8cb4ff; background: transparent; transition: all .2s ease; font-weight: 500; font-size: .95rem; cursor: pointer; }
+      .tab:hover { color: #c5e2ff; background: rgba(88, 163, 255, .08); }
+      .tab.active { background: linear-gradient(180deg, rgba(57, 133, 255, .24), rgba(57, 133, 255, .08)); color: #f8fdff; border-bottom-color: rgba(88, 163, 255, .28); }
 
       .tab-panels { display: grid; gap: 24px; }
-      .panel-box { display: none; gap: 20px; }
+      .panel-box { display: none; gap: 16px; animation: fadeIn .2s ease; }
       .panel-box.active { display: grid; }
-      .panel-intro { display: grid; gap: 12px; }
-      .panel-intro h2 { margin: 0; color: #eef9ff; font-size: 1.22rem; }
-      .panel-intro p { margin: 0; color: rgba(231, 241, 255, .78); line-height: 1.7; }
+      @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-      .info-block { display: grid; gap: 10px; padding: 22px; border-radius: 24px; background: rgba(8, 15, 31, .95); border: 1px solid rgba(100, 168, 255, .12); }
-      .info-block h3 { margin: 0; color: #f3f8ff; }
-      .info-block p { margin: 0; color: rgba(210, 228, 255, .78); line-height: 1.7; }
+      .panel-header { display: grid; gap: 8px; }
+      .panel-header h2 { margin: 0; color: #eef9ff; font-size: 1.35rem; }
+      .panel-header p { margin: 0; color: rgba(231, 241, 255, .7); line-height: 1.6; font-size: .95rem; }
 
-      .result-grid { display: grid; gap: 18px; }
-      .chip-list { display: flex; flex-wrap: wrap; gap: 10px; }
-      .chip { padding: 10px 16px; border-radius: 999px; border: 1px solid rgba(112, 181, 255, .18); background: rgba(29, 60, 122, .28); color: #d8efff; font-size: .88rem; }
+      /* CONTENT BLOCKS */
+      .content-grid { display: grid; gap: 16px; }
 
-      .action-card { display: grid; gap: 16px; padding: 24px; border-radius: 28px; background: rgba(10, 18, 34, .95); border: 1px solid rgba(95, 170, 255, .12); }
-      .action-header { display: flex; align-items: center; gap: 14px; }
-      .action-icon { width: 46px; height: 46px; border-radius: 16px; background: rgba(44, 106, 255, .16); display: grid; place-items: center; color: #94d9ff; }
-      .action-header strong { font-size: 1rem; color: #f3f8ff; }
-      .action-text { color: rgba(226, 240, 255, .78); line-height: 1.7; }
-      .action-button { border: none; border-radius: 18px; background: linear-gradient(135deg, #62c6ff, #1f6fff); color: #05111c; padding: 14px 18px; font-weight: 700; letter-spacing: .05em; }
+      .section-block { display: grid; gap: 12px; padding: 20px; border-radius: 16px; background: rgba(8, 15, 31, .7); border: 1px solid rgba(100, 168, 255, .12); transition: all .2s ease; }
+      .section-block:hover { background: rgba(8, 15, 31, .9); border-color: rgba(100, 168, 255, .2); }
 
-      .footer { display: grid; gap: 16px; padding: 28px 0 16px; }
+      .section-title { color: #94d9ff; font-weight: 600; font-size: .9rem; text-transform: uppercase; letter-spacing: .08em; margin: 0; }
+      .section-content { color: rgba(210, 228, 255, .85); line-height: 1.75; white-space: pre-wrap; word-wrap: break-word; }
+
+      .article-item { display: grid; gap: 18px; padding: 40px; border-radius: 20px; background: linear-gradient(135deg, rgba(30, 50, 90, .8), rgba(15, 30, 60, .9)); border: 2px solid rgba(88, 163, 255, .25); text-align: center; max-width: 800px; margin: 0 auto; }
+      .article-item:hover { background: linear-gradient(135deg, rgba(40, 70, 120, .9), rgba(20, 40, 80, 1)); border-color: rgba(88, 163, 255, .5); }
+
+      .article-number { color: #5bc7ff; font-weight: 800; font-size: 1.8rem; letter-spacing: .05em; }
+      .article-meta { color: rgba(150, 200, 255, .8); font-size: .95rem; font-weight: 500; margin-top: 4px; }
+      .article-text { color: rgba(230, 240, 255, .95); line-height: 1.9; font-size: 1.05rem; margin-top: 16px; }
+
+      .example-section { display: grid; gap: 10px; padding: 18px; border-radius: 14px; background: rgba(45, 25, 80, .3); border-left: 4px solid rgba(168, 85, 247, .4); }
+      .example-section:hover { background: rgba(45, 25, 80, .5); }
+      .example-title { color: #d8a5ff; font-weight: 600; font-size: .9rem; }
+      .example-text { color: rgba(220, 200, 255, .85); line-height: 1.75; }
+
+      .action-section { display: grid; gap: 10px; padding: 18px; border-radius: 14px; background: rgba(25, 60, 45, .3); border-left: 4px solid rgba(76, 175, 80, .4); }
+      .action-section:hover { background: rgba(25, 60, 45, .5); }
+      .action-title { color: #7bc67b; font-weight: 600; font-size: .9rem; }
+      .action-text { color: rgba(220, 235, 220, .85); line-height: 1.75; }
+
+      .divider { height: 1px; background: rgba(88, 163, 255, .1); margin: 12px 0; }
+
+      .empty-state { padding: 40px 24px; text-align: center; color: rgba(231, 241, 255, .5); }
+      .empty-state-icon { font-size: 2.5rem; margin-bottom: 12px; }
+
+      .footer { display: grid; gap: 16px; padding: 28px 0 16px; border-top: 1px solid rgba(90, 155, 255, .1); }
       .footer-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
-      .footer-card { display: inline-flex; align-items: center; justify-content: space-between; gap: 12px; min-width: 240px; padding: 16px 20px; border-radius: 20px; background: rgba(15, 26, 48, .94); border: 1px solid rgba(94, 160, 255, .12); color: #d8eeff; }
-      .footer-card strong { color: #f7fbff; font-size: 1rem; }
-      .footer-mini { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; color: rgba(211, 226, 255, .7); font-size: .84rem; }
-      .footer-mini span { padding: 8px 14px; border-radius: 999px; background: rgba(62, 100, 170, .16); border: 1px solid rgba(112, 177, 255, .1); }
+      .footer-card { display: inline-flex; align-items: center; justify-content: space-between; gap: 12px; min-width: 240px; padding: 16px 20px; border-radius: 12px; background: rgba(15, 26, 48, .7); border: 1px solid rgba(94, 160, 255, .12); color: #d8eeff; }
+      .footer-card strong { color: #f7fbff; font-size: .95rem; }
+      .footer-mini { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; color: rgba(211, 226, 255, .6); font-size: .8rem; }
+      .footer-mini span { padding: 6px 12px; border-radius: 6px; background: rgba(62, 100, 170, .12); border: 1px solid rgba(112, 177, 255, .08); }
 
       @media (max-width: 1080px) {
-        .actions { grid-template-columns: 1fr; }
         .footer-row { flex-direction: column; align-items: stretch; }
       }
 
       @media (max-width: 780px) {
         .header, .content { padding-left: 24px; padding-right: 24px; }
         .search-box { grid-template-columns: 1fr; }
+        .tabs { gap: 6px; }
+        .tab { padding: 10px 14px; font-size: .85rem; }
       }
 
       @media (max-width: 620px) {
         .frame { border-radius: 20px; }
+        .brand-title { font-size: 1.5rem; }
+        .panel-header h2 { font-size: 1.1rem; }
       }
     </style>
   </head>
@@ -92,117 +119,102 @@
         <header class="header">
           <div class="brand">
             <div class="brand-top">
-              <div class="brand-logo">⚖</div>
+              <div class="brand-logo">⚖️</div>
               <div>
-                <div class="brand-name">IURISLEX: MENTOR CONSTITUCIONAL</div>
-                <div class="brand-sub">CONSULTA Y ANÁLISIS JURÍDICO PROFESIONAL</div>
+                <div class="brand-name">Consulta Constitucional Inteligente</div>
               </div>
             </div>
-            <div class="brand-title">Consulta la Constitución con análisis real y simulador de casos.</div>
-            <div class="brand-tag">CPSC 1991 / Artículos, comparación y práctica.</div>
+            <div class="brand-title">Tus derechos, ahora más cerca de ti</div>
+            <div class="brand-tag">Impulsado por IA Jurídica</div>
           </div>
           <div class="connection"><span>Conexión local: Ollama</span></div>
         </header>
 
         <section class="content">
           <div class="search-box">
-            <input id="query-input" type="text" placeholder="Consulta un artículo o pregunta: ej. 'Artículo 13', 'Derecho al Trabajo', '¿Qué dice la Constitución sobre igualdad?'" />
+            <input id="query-input" type="text" placeholder="Consulta: 'Artículo 13', 'Derecho al trabajo', '¿Qué dice la Constitución sobre igualdad?'" />
             <button id="search-button" class="search-button">Preguntar</button>
           </div>
 
-          <div class="tabs" role="tablist">
-            <button class="tab active" data-panel="consulta">Consulta</button>
-            <button class="tab" data-panel="comparacion">Comparación</button>
-            <button class="tab" data-panel="simulacion">Simulación</button>
-            <button class="tab" data-panel="analisis">Análisis</button>
-          </div>
-
-          <div class="tab-panels">
-            <section id="consulta" class="panel-box active">
-              <div class="panel-intro">
-                <h2>Consulta constitucional</h2>
-                <p>Introduce una pregunta o un artículo. El asistente responde con el texto constitucional exacto y su contexto jurídico.</p>
-              </div>
-              <div class="result-grid">
-                <div class="info-block">
-                  <h3>Artículo consultado</h3>
-                  <p id="article-meta">Utiliza el cuadro de búsqueda para iniciar la consulta.</p>
-                </div>
-                <div class="info-block">
-                  <h3>Texto constitucional</h3>
-                  <p id="article-paragraph">El texto del artículo aparecerá aquí después de consultar.</p>
-                </div>
-                <div class="info-block">
-                  <h3>Respuesta del asistente</h3>
-                  <p id="llm-response">La explicación generada por Ollama aparecerá aquí.</p>
-                </div>
-                <div class="chip-list" id="related-chips"></div>
-              </div>
-            </section>
-
-            <section id="comparacion" class="panel-box">
-              <div class="panel-intro">
-                <h2>Mapa de relaciones constitucionales</h2>
-                <p>Compara el artículo con otros preceptos afines y descubre su conexión dentro de la Carta Magna.</p>
-              </div>
-              <div class="info-block">
-                <h3>Comparación legal</h3>
-                <p id="comparison-text">Después de consultar, la comparación aparecerá aquí.</p>
-              </div>
-              <div class="chip-list" id="comparison-list"></div>
-            </section>
-
-            <section id="simulacion" class="panel-box">
-              <div class="panel-intro">
-                <h2>Simulador de casos prácticos</h2>
-                <p>Genera un escenario realista basado en el artículo consultado y su interpretación constitucional.</p>
-              </div>
-              <div class="info-block">
-                <h3>Escenario sugerido</h3>
-                <p id="case-scenario">Realiza una consulta primero para activar el simulador.</p>
-              </div>
-              <div class="info-block">
-                <h3>Guía del caso</h3>
-                <p id="case-prompt">El simulador propondrá un instructivo de análisis en cuanto se consulte un artículo.</p>
-              </div>
-            </section>
-
-            <section id="analisis" class="panel-box">
-              <div class="panel-intro">
-                <h2>Análisis de la consulta</h2>
-                <p>Obtén explicaciones claras, técnica jurídica y preguntas para profundizar el estudio de cada artículo.</p>
-              </div>
-              <div class="info-block">
-                <h3>Enfoque jurídico simple</h3>
-                <p id="analysis-simple">Aquí aparecerá el resumen en lenguaje accesible.</p>
-              </div>
-              <div class="info-block">
-                <h3>Enfoque jurídico técnico</h3>
-                <p id="analysis-technical">Aquí aparecerá el análisis detallado del artículo en su contexto constitucional.</p>
-              </div>
-              <div class="info-block">
-                <h3>Pregunta de reflexión</h3>
-                <p id="analysis-reflection">Aquí aparecerá una pregunta de reflexión para profundizar la interpretación jurídica.</p>
-              </div>
-            </section>
-          </div>
-
-          <div class="actions">
-            <div class="action-card">
-              <div class="action-header">
-                <div class="action-icon">🗺️</div>
-                <strong>Mapa de relaciones</strong>
-              </div>
-              <p class="action-text">Observa cómo el artículo se conecta con otros preceptos constitucionales relevantes.</p>
-              <button class="action-button" data-panel="comparacion">Abrir mapa</button>
+          <div class="tabs-container">
+            <div class="tabs" role="tablist">
+              <button class="tab active" data-panel="articulos">📜 Artículos</button>
+              <button class="tab" data-panel="explicacion">🧠 Explicación</button>
+              <button class="tab" data-panel="derechos">⚖️ Derechos</button>
+              <button class="tab" data-panel="ejemplos">📌 Ejemplos</button>
+              <button class="tab" data-panel="acciones">🚀 Qué hacer</button>
             </div>
-            <div class="action-card">
-              <div class="action-header">
-                <div class="action-icon">⚖️</div>
-                <strong>Simulador de casos</strong>
-              </div>
-              <p class="action-text">Lleva el análisis a un caso práctico y aplica los conceptos en una situación realista.</p>
-              <button class="action-button" data-panel="simulacion">Lanzar simulador</button>
+
+            <div class="tab-panels">
+              <!-- TAB: ARTÍCULOS -->
+              <section id="articulos" class="panel-box active">
+                <div class="panel-header">
+                  <h2>Artículos Aplicables</h2>
+                  <p>Todos los artículos de la Constitución relacionados con tu consulta, organizados por relevancia</p>
+                </div>
+                <div class="content-grid" id="articulos-content">
+                  <div class="empty-state">
+                    <div class="empty-state-icon">📋</div>
+                    <p>Realiza una consulta para ver los artículos aplicables</p>
+                  </div>
+                </div>
+              </section>
+
+              <!-- TAB: EXPLICACIÓN -->
+              <section id="explicacion" class="panel-box">
+                <div class="panel-header">
+                  <h2>Explicación Clara y Didáctica</h2>
+                  <p>Entendimiento profundo del contenido en lenguaje accesible y técnico</p>
+                </div>
+                <div class="content-grid" id="explicacion-content">
+                  <div class="empty-state">
+                    <div class="empty-state-icon">💡</div>
+                    <p>La explicación aparecerá aquí después de tu consulta</p>
+                  </div>
+                </div>
+              </section>
+
+              <!-- TAB: DERECHOS -->
+              <section id="derechos" class="panel-box">
+                <div class="panel-header">
+                  <h2>Derechos y Garantías</h2>
+                  <p>Derechos específicos protegidos y garantías constitucionales aplicables</p>
+                </div>
+                <div class="content-grid" id="derechos-content">
+                  <div class="empty-state">
+                    <div class="empty-state-icon">🛡️</div>
+                    <p>Los derechos y garantías aparecerán aquí</p>
+                  </div>
+                </div>
+              </section>
+
+              <!-- TAB: EJEMPLOS -->
+              <section id="ejemplos" class="panel-box">
+                <div class="panel-header">
+                  <h2>Ejemplos Prácticos</h2>
+                  <p>Casos reales y simulaciones para entender mejor cómo se aplica la ley</p>
+                </div>
+                <div class="content-grid" id="ejemplos-content">
+                  <div class="empty-state">
+                    <div class="empty-state-icon">📊</div>
+                    <p>Los ejemplos prácticos aparecerán aquí</p>
+                  </div>
+                </div>
+              </section>
+
+              <!-- TAB: ACCIONES -->
+              <section id="acciones" class="panel-box">
+                <div class="panel-header">
+                  <h2>Pasos Siguientes</h2>
+                  <p>Acciones concretas que puedes tomar si necesitas proteger un derecho</p>
+                </div>
+                <div class="content-grid" id="acciones-content">
+                  <div class="empty-state">
+                    <div class="empty-state-icon">→</div>
+                    <p>Las acciones recomendadas aparecerán aquí</p>
+                  </div>
+                </div>
+              </section>
             </div>
           </div>
 
@@ -218,8 +230,8 @@
               </div>
             </div>
             <div class="footer-mini">
-              <span id="model-status">Modelo: GPT-4o</span>
-              <span>Interfaz profesional</span>
+              <span id="model-status">Modelo: qwen2.5:7b-instruct</span>
+              <span>Interfaz profesional v2</span>
             </div>
           </div>
         </section>
@@ -231,99 +243,206 @@
       const panels = document.querySelectorAll('.panel-box');
       const searchButton = document.querySelector('#search-button');
       const queryInput = document.querySelector('#query-input');
-      const articleMeta = document.querySelector('#article-meta');
-      const articleParagraph = document.querySelector('#article-paragraph');
-      const relatedChips = document.querySelector('#related-chips');
-      const comparisonText = document.querySelector('#comparison-text');
-      const comparisonList = document.querySelector('#comparison-list');
-      const caseScenario = document.querySelector('#case-scenario');
-      const casePrompt = document.querySelector('#case-prompt');
-      const analysisSimple = document.querySelector('#analysis-simple');
-      const analysisTechnical = document.querySelector('#analysis-technical');
-      const analysisReflection = document.querySelector('#analysis-reflection');
-      const llmResponse = document.querySelector('#llm-response');
       const responseTime = document.querySelector('#response-time');
       const providerStatus = document.querySelector('#provider-status');
       const modelStatus = document.querySelector('#model-status');
-      const actionButtons = document.querySelectorAll('.action-button');
 
       function setActiveTab(panelId) {
-        tabs.forEach(tab => {
-          const active = tab.dataset.panel === panelId;
-          tab.classList.toggle('active', active);
-        });
+        tabs.forEach(tab => tab.classList.toggle('active', tab.dataset.panel === panelId));
         panels.forEach(panel => panel.classList.toggle('active', panel.id === panelId));
       }
 
       function renderResponse(data) {
+        // Extraer datos del API
         const article = data.article;
-        articleMeta.textContent = `${article.articulo} • ${article.titulo_nombre} / ${article.capitulo_nombre}`;
-        articleParagraph.textContent = article.texto;
+        const related = data.related || [];
+        const analysis = data.analysis || {};
+        const caseSimulation = data.case_simulation || {};
+        const llmResponse = data.llm_response || '';
 
-        relatedChips.innerHTML = data.related.length
-          ? data.related.map(item => `<span class="chip">${item.articulo} — ${item.capitulo_nombre}</span>`).join('')
-          : '<span class="chip">No hay relaciones directas disponibles.</span>';
+        // TAB 1: ARTÍCULOS - Solo artículo principal
+        const articulosHTML = `
+          <div class="article-item">
+            <div class="article-number">${article.articulo}</div>
+            <div class="article-meta">${article.titulo_nombre} • ${article.capitulo_nombre}</div>
+            <div class="article-text">${article.texto}</div>
+          </div>
+        `;
+        document.querySelector('#articulos-content').innerHTML = articulosHTML;
 
-        comparisonText.textContent = data.analysis.comparative;
-        comparisonList.innerHTML = data.related.length
-          ? data.related.map(item => `<span class="chip">${item.articulo}</span>`).join('')
-          : '<span class="chip">Sin comparaciones adicionales</span>';
+        // TAB 2: EXPLICACIÓN
+        let explicacionHTML = '';
+        if (analysis.simple) {
+          explicacionHTML += `
+            <div class="section-block">
+              <div class="section-title">📖 Explicación Simple</div>
+              <div class="section-content">${analysis.simple}</div>
+            </div>
+          `;
+        }
+        if (analysis.technical) {
+          explicacionHTML += `
+            <div class="section-block">
+              <div class="section-title">⚖️ Análisis Técnico</div>
+              <div class="section-content">${analysis.technical}</div>
+            </div>
+          `;
+        }
+        if (analysis.comparative) {
+          explicacionHTML += `
+            <div class="section-block">
+              <div class="section-title">🔗 Análisis Comparativo</div>
+              <div class="section-content">${analysis.comparative}</div>
+            </div>
+          `;
+        }
+        if (llmResponse) {
+          explicacionHTML += `
+            <div class="section-block">
+              <div class="section-title">🤖 Respuesta del Asistente</div>
+              <div class="section-content">${llmResponse}</div>
+            </div>
+          `;
+        }
+        if (!explicacionHTML) {
+          explicacionHTML = '<div class="empty-state"><p>No hay explicación disponible</p></div>';
+        }
+        document.querySelector('#explicacion-content').innerHTML = explicacionHTML;
 
-        caseScenario.textContent = data.case_simulation.scenario;
-        casePrompt.textContent = data.case_simulation.prompt;
+        // TAB 3: DERECHOS
+        let derechosHTML = `
+          <div class="section-block">
+            <div class="section-title">🛡️ Derecho Principal Protegido</div>
+            <div class="section-content">El ${article.articulo} en ${article.titulo_nombre} garantiza derechos fundamentales de aplicación inmediata.</div>
+          </div>
+        `;
+        if (analysis.simple) {
+          derechosHTML += `
+            <div class="section-block">
+              <div class="section-title">✅ Garantías Específicas</div>
+              <div class="section-content">${analysis.simple}</div>
+            </div>
+          `;
+        }
+        document.querySelector('#derechos-content').innerHTML = derechosHTML;
 
-        analysisSimple.textContent = data.analysis.simple;
-        analysisTechnical.textContent = data.analysis.technical;
-        analysisReflection.textContent = data.analysis.reflection;
-        llmResponse.textContent = data.llm_response || 'No hay respuesta del asistente disponible.';
+        // TAB 4: EJEMPLOS
+        let ejemplosHTML = '';
+        if (caseSimulation.scenario) {
+          ejemplosHTML += `
+            <div class="example-section">
+              <div class="example-title">📋 Caso Práctico</div>
+              <div class="example-text">${caseSimulation.scenario}</div>
+            </div>
+          `;
+        }
+        if (caseSimulation.prompt) {
+          ejemplosHTML += `
+            <div class="example-section">
+              <div class="example-title">🎯 Análisis del Caso</div>
+              <div class="example-text">${caseSimulation.prompt}</div>
+            </div>
+          `;
+        }
+        if (analysis.case_practice) {
+          ejemplosHTML += `
+            <div class="example-section">
+              <div class="example-title">⚖️ En la Práctica</div>
+              <div class="example-text">${analysis.case_practice}</div>
+            </div>
+          `;
+        }
+        if (!ejemplosHTML) {
+          ejemplosHTML = '<div class="empty-state"><p>No hay ejemplos disponibles</p></div>';
+        }
+        document.querySelector('#ejemplos-content').innerHTML = ejemplosHTML;
 
+        // TAB 5: ACCIONES
+        let accionesHTML = '';
+        if (caseSimulation.prompt) {
+          accionesHTML += `
+            <div class="action-section">
+              <div class="action-title">✓ Pasos a Seguir</div>
+              <div class="action-text">${caseSimulation.prompt}</div>
+            </div>
+          `;
+        }
+        if (analysis.case_practice) {
+          accionesHTML += `
+            <div class="action-section">
+              <div class="action-title">🛡️ Protección de Derechos</div>
+              <div class="action-text">${analysis.case_practice}</div>
+            </div>
+          `;
+        }
+        if (analysis.reflection) {
+          accionesHTML += `
+            <div class="action-section">
+              <div class="action-title">💭 Para Reflexionar</div>
+              <div class="action-text">${analysis.reflection}</div>
+            </div>
+          `;
+        }
+        if (!accionesHTML) {
+          accionesHTML = '<div class="empty-state"><p>No hay acciones disponibles</p></div>';
+        }
+        document.querySelector('#acciones-content').innerHTML = accionesHTML;
+
+        // Actualizar footer
         responseTime.textContent = `${data.response_time_ms} ms`;
-        providerStatus.textContent = data.provider;
-        modelStatus.textContent = `Modelo: ${data.model}`;
+        providerStatus.textContent = data.provider || 'Ollama (local)';
+        modelStatus.textContent = `Modelo: ${data.model || 'qwen2.5:7b-instruct'}`;
       }
 
       async function submitQuery() {
         const query = queryInput.value.trim();
         if (!query) {
-          articleMeta.textContent = 'Ingrese una consulta válida para comenzar.';
+          alert('Por favor, ingresa una consulta');
           return;
         }
 
-        articleMeta.textContent = 'Consultando…';
-        articleParagraph.textContent = 'Espere mientras se procesa su solicitud.';
+        // Mostrar estado de carga
+        const allContents = [
+          '#articulos-content',
+          '#explicacion-content',
+          '#derechos-content',
+          '#ejemplos-content',
+          '#acciones-content'
+        ];
+        allContents.forEach(sel => {
+          document.querySelector(sel).innerHTML = '<div class="empty-state"><p>Consultando…</p></div>';
+        });
 
         try {
           const result = await fetch('/api/consulta', {
             method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ query }),
           });
 
           if (!result.ok) {
             const error = await result.json();
-            articleMeta.textContent = error.detail || 'No se encontró información para esa consulta.';
-            articleParagraph.textContent = '';
+            allContents.forEach(sel => {
+              document.querySelector(sel).innerHTML = `<div class="empty-state"><p>❌ ${error.detail || 'Error en la consulta'}</p></div>`;
+            });
             return;
           }
 
           const data = await result.json();
           renderResponse(data);
-          setActiveTab('consulta');
+          setActiveTab('articulos');
         } catch (error) {
-          articleMeta.textContent = 'Error de conexión. Intenta nuevamente.';
-          articleParagraph.textContent = '';
+          allContents.forEach(sel => {
+            document.querySelector(sel).innerHTML = '<div class="empty-state"><p>❌ Error de conexión</p></div>';
+          });
         }
       }
 
+      // Event listeners
       tabs.forEach(tab => tab.addEventListener('click', () => setActiveTab(tab.dataset.panel)));
-      actionButtons.forEach(button => button.addEventListener('click', () => setActiveTab(button.dataset.panel)));
       searchButton.addEventListener('click', submitQuery);
       queryInput.addEventListener('keydown', event => {
-        if (event.key === 'Enter') {
-          submitQuery();
-        }
+        if (event.key === 'Enter') submitQuery();
       });
     </script>
   </body>
